@@ -61,8 +61,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const { data } = await axios.post(`${API_BASE_URL}/api/auth/register`, { email, password, name, role });
       const { token, user: userData } = data;
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(userData));
+      // localStorage.setItem('token', token);
+      // localStorage.setItem('user', JSON.stringify(userData));
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       setUser(userData);
