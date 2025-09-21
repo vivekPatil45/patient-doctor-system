@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 app.use('/api/auth', authRoutes);
 app.use('/api/doctors', doctorRoutes);
 app.use('/api/appointments', appointmentRoutes);
@@ -24,6 +24,10 @@ app.use('/api/prescriptions', prescriptionRoutes);
 
 
 app.get('/api/health', (req, res) => {
+    res.json({ message: 'Clinix Sphere API is running', timestamp: new Date().toISOString() });
+});
+
+app.get('/', (req, res) => {
     res.json({ message: 'Clinix Sphere API is running', timestamp: new Date().toISOString() });
 });
 

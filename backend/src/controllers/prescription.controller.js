@@ -70,3 +70,34 @@ export const getPrescriptions = async (req, res) => {
         });
     }
 };
+
+
+
+export const getPrescriptionByAppointment = async (req, res) => {
+  try {
+    const { appointmentId } = req.params;
+    console.log(appointmentId);
+    
+
+    // // Check if appointment exists and belongs to the user
+    // const appointment = await Prescription.find({a});
+    // console.log(appointment);
+    
+    // if (!appointment) {
+    //   return res.status(404).json({ success: false, message: 'Appointment not found' });
+    // }
+
+    // Fetch prescription linked to this appointment
+    const prescription = await Prescription.findOne({ appointmentId: appointmentId });
+    console.log(prescription);
+    
+    if (!prescription) {
+      return res.status(404).json({ success: false, message: 'Prescription not found' });
+    }
+
+    res.json({ success: true, data: prescription });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
